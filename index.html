@@ -16,7 +16,7 @@
                 <div class="container-form">
                     <h2 class="form-title">Add a new Task</h2>
                     
-                    <form v-on:submit="addTask">
+                    <form @submit="addTask">
                         <input class="form-input" type="text" v-model="tasks.title">
                         <button class="btn-success" type="submit">Add</button>
                     </form>
@@ -27,15 +27,15 @@
                 <div class="container-table">
                     <table>
                         <thead>
-                            <th>Check Done</th>
-                            <th>Name Task</th>
-                            <th>Action</th>
+                            <th style="width: 10%;">Check Done</th>
+                            <th style="width: 70%;">Name Task</th>
+                            <th style="width: 20%;">Action</th>
                         </thead>                        
                         <tbody>
                             <tr v-for="task in tasks">
                                 <td>
                                     <label class="container-checkbox">
-                                        <input class="input-checkbox" type="checkbox" v-model="task.done">
+                                        <input class="input-checkbox" type="checkbox" v-model="task.done" @click="showDelete(task)">
                                         <span class="checkmark"></span>
                                     </label>
                                 </td>
@@ -45,7 +45,10 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn-danger" v-on:click="deleteTask(task)">Delete</button>
+                                    <button class="btn-danger" 
+                                            :class="{showDelete: task.show}" @click="deleteTask(task)">
+                                            Delete
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

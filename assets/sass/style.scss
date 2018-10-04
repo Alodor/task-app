@@ -39,6 +39,10 @@ body {
     color: #aeb6bf;
 }
 
+.showDelete {
+    visibility: hidden;
+}
+
 
 // -- Container
 .container {    
@@ -102,7 +106,9 @@ body {
 .container-table {
     overflow-x: auto;
     background-color: #fff;
-    @include shadow(15px);
+    height: 460px;
+    margin-bottom: 50px;
+    @include shadow(15px);    
     
     table {
         border-collapse: collapse;

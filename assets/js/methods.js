@@ -7,15 +7,31 @@ var app = new Vue({
         addTask: function(e) {
             e.preventDefault()
             
-            this.tasks.push({
-                title: this.tasks.title,
-                done: false
-            })
+            if(this.tasks.title == '') {
+                alert('You must enter a task.')
             
-            this.tasks.title = ''
+            } else {
+                this.tasks.push({
+                    title: this.tasks.title,
+                    done: false,
+                    show: true
+                })    
+                this.tasks.title = ''                
+            }
         },
-        deleteTask: function(task) {
-            this.tasks.splice(this.tasks.indexOf(task), 1)
+        showDelete: function(task) {
+            if(task.done == true) {
+               task.show = true
+                
+            } else {
+                task.show = false
+            }
+        },
+        deleteTask: function(task) {            
+            if(task.done == true) {                
+                if (confirm('Do you want to eliminate this task?'))
+                    this.tasks.splice(this.tasks.indexOf(task), 1)
+            }
         }
     }
 })
